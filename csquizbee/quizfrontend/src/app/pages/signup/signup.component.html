@@ -1,7 +1,8 @@
  <div class="bootstrap-wrapper">
     <div class="container">
-        <div class="row" style="margin-top:20px;">
+        <div class="row">
             <div class="col-md-6 offset-md-3">
+              <mat-card>
                 <div class="container text-center">
                     <img src="../../../assets/logo.png" alt="">
                 </div>
@@ -11,7 +12,8 @@
                     <!--Username field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Name</mat-label>
-                        <input 
+                        <input
+                        required 
                         [(ngModel)] = "user.username"
                         name = "username"
                         matInput 
@@ -24,6 +26,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Password</mat-label>
                         <input 
+                        required
                         [(ngModel)] = "user.password"
                         name = "password"
                         type = "password"
@@ -35,6 +38,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>First Name</mat-label>
                         <input 
+                        required
                         [(ngModel)] = "user.firstName"
                         name = "firstName"
                         matInput placeholder="Enter first name here">
@@ -44,6 +48,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Last Name</mat-label>
                         <input 
+                        required
                         [(ngModel)] = "user.lastName"
                         name = "lastName"
                         matInput placeholder="Enter last name Here">
@@ -53,6 +58,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input 
+                        required
                         [(ngModel)] = "user.email"
                         name = "email"
                         type = "email" matInput placeholder="Enter email Here">
@@ -62,6 +68,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Phone Number</mat-label>
                         <input 
+                        required
                         [(ngModel)] = "user.phone"
                         name = "phone"
                         type = "number" matInput placeholder="Enter phone number here">
@@ -73,6 +80,8 @@
                         <button style = "margin-left: 20px" mat-raised-button color="accent">Clear</button>
                       </div>
                 </form>
+
+              </mat-card>
             
             </div>
         </div>
