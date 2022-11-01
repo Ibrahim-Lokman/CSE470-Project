@@ -1,15 +1,18 @@
 package com.quiz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
+public class User implements UserDetails {
 
-public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +34,6 @@ public class User {
 
     }
 
-
     public User(Long id, String username, String password, String firstName, String lastName, String email, String phone, boolean enabled, String profile) {
         this.id = id;
         this.username = username;
@@ -43,23 +45,9 @@ public class User {
         this.enabled = enabled;
         this.profile = profile;
     }
+    public String getProfile() { return profile; }
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
+    public void setProfile(String profile) { this.profile = profile; }
 
     public Long getId() {
         return id;
@@ -73,9 +61,40 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        Set<Authority> set = new HashSet<>();
+
+        this.userRoles.forEach(userRole -> {
+            set.add(new Authority(userRole.getRole().getRoleName()));
+        });
+
+        return set;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) { this.userRoles = userRoles; }
 
     public String getPassword() {
         return password;
@@ -110,7 +129,7 @@ public class User {
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
     public void setEnabled(boolean enabled) {
@@ -124,4 +143,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

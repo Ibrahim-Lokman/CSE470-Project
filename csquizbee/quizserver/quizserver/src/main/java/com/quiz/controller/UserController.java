@@ -1,12 +1,14 @@
-package com.quiz;
+package com.quiz.controller;
 
 import com.quiz.model.Role;
 import com.quiz.model.User;
 import com.quiz.model.UserRole;
 import com.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +44,10 @@ public class UserController {
     }
 
     //update api
-
-
+    /*
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?> exceptionHandler(UserNotFoundException ex){
+        return ResponseEntity;
+    }
+*/
 }
