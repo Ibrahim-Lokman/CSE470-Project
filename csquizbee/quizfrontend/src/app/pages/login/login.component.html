@@ -10,12 +10,19 @@
                 </div>
 
                 <h1 class = "text-center">Login Here!!</h1>
-                <form action = "">
+
+                {{ loginData | json }}
+
+                <form (ngSubmit)="formSubmit()">
 
                     <!--Username field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Name</mat-label>
                         <input
+
+                        [(ngModel)] = "loginData.username"
+                        name = "username"
+
                         required
                         matInput 
                         placeholder="Enter Username Here"
@@ -27,6 +34,10 @@
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Password</mat-label>
                         <input 
+
+                        [(ngModel)] = "loginData.password"
+                        name = "password"
+
                         required
                         type = "password"
                         matInput 
@@ -35,8 +46,19 @@
 
 
                       <div class="container text-center">
-                        <button mat-raised-button color = 'primary' type = 'submit'  >Login</button>
-                        <button class = "ml20" style = "margin-left: 20px"  mat-raised-button color = 'accent' >Reset</button>
+                        <button 
+                          mat-raised-button 
+                          color = 'primary' 
+                          type = 'submit'>
+                          Login
+                        </button>
+                        <button 
+                            class = "ml20" 
+                            style = "margin-left: 20px"  
+                            mat-raised-button 
+                            color = 'accent' >
+                            Reset
+                        </button>
   
                     </div>
                     </form>
