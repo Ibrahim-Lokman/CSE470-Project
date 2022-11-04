@@ -10,20 +10,43 @@
    <span>csQUIZbee</span>
    <span class="example-spacer"></span>
     <a
-    [routerLink]="'/login'"
-    mat-icon-button 
-    class="example-icon favorite-icon " 
-     aria-label="Example icon-button with share icon"
-    >Login
+         *ngIf="!isLoggedIn"
+        [routerLink]="'/login'"
+        mat-icon-button 
+        class="example-icon favorite-icon " 
+        aria-label="Example icon-button with share icon">
+    Login
     </a>
 
     <a 
+        *ngIf="!isLoggedIn"
         [routerLink]="'/signup'"
         mat-icon-button 
         class="example-icon favorite-icon mr20 ml20" 
         aria-label="Example icon-button with share icon"
     >
     Register
+    </a>
+
+    <a 
+        *ngIf="isLoggedIn"
+        mat-icon-button 
+        class="example-icon favorite-icon mr20 ml20" 
+        aria-label="Example icon-button with share icon"
+        >
+        {{user.username}}
+    </a>
+
+
+
+    <a 
+        (click) = "logout()"
+        *ngIf="isLoggedIn"
+        mat-icon-button 
+        class="example-icon favorite-icon mr20 ml20" 
+        aria-label="Example icon-button with share icon"
+    >
+    Logout
     </a>
 
  </mat-toolbar>
