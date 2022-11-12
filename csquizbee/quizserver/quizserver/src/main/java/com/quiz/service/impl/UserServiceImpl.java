@@ -1,5 +1,6 @@
 package com.quiz.service.impl;
 
+import com.quiz.helper.UserFoundException;
 import com.quiz.model.User;
 import com.quiz.model.UserRole;
 import com.quiz.repo.RoleRepository;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
        User local = this.userRepository.findByUsername(user.getUsername());
        if(local != null) {
            System.out.println("User already exits");
-           throw new Exception("User already exits!!");
+           throw new UserFoundException();
        } else{
             for(UserRole ur : userRoles){
                 roleRepository.save(ur.getRole());

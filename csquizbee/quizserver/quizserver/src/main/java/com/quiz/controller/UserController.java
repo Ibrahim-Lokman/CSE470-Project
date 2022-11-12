@@ -1,11 +1,14 @@
 package com.quiz.controller;
 
+import com.quiz.helper.UserFoundException;
+import com.quiz.helper.UserNotFoundException;
 import com.quiz.model.Role;
 import com.quiz.model.User;
 import com.quiz.model.UserRole;
 import com.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
@@ -20,11 +23,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @PostMapping("/")
     public User createUser(@RequestBody User user) throws Exception {
 
         user.setProfile("default.png");
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+
         Set<UserRole> roles = new HashSet<>();
+
         Role role = new Role();
         role.setRoleId(45L);
         role.setRoleName("NORMAL");
@@ -44,10 +53,11 @@ public class UserController {
     }
 
     //update api
-    /*
-    @ExceptionHandler(UserNotFoundException.class)
+/*
+    @ExceptionHandler(UserFoundException.class)
     public ResponseEntity<?> exceptionHandler(UserNotFoundException ex){
         return ResponseEntity;
     }
-*/
+
+ */
 }
