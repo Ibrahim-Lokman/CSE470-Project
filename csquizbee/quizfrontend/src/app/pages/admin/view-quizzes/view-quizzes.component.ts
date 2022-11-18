@@ -9,19 +9,8 @@ import Swal from 'sweetalert2';
 })
 export class ViewQuizzesComponent implements OnInit {
 
-  quizzes = [
-    {
-      qId: '',
-      title: '',
-      description: '',
-      maxMarks:'',
-      numberOfQuestions: '',
-      active: '',
-      category: {
-        title: ''
-      },
-    },
-  ];
+  quizzes = [] as any;
+
   constructor(private _quiz: QuizService) { }
 
   ngOnInit(): void {
@@ -39,4 +28,25 @@ export class ViewQuizzesComponent implements OnInit {
 
   }
 
+  deleteQuiz(qId:any) {
+
+    Swal.fire(
+      {
+        icon: "info",
+        title: "Are you sure you want to delete",
+        confirmButtonText: "Yes, delete",
+        showCancelButton: true,
+      }).then((result) => {
+        if(result.isConfirmed) {
+          this._quiz.deleteQuiz(qId).subscribe( 
+            (data:any) => {
+            this.quizzes = this.quizzes.filter((quiz:any) => quiz.qid != qId); 
+            Swal.fire('Success', 'Quiz deleted successfully','success');
+          },(error) => {
+            Swal.fire('Error', 'Error in deleting','error');
+          }
+          );
+        }
+      });
+   }
 }
