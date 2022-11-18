@@ -57,6 +57,15 @@ public class QuestionController {
 
     }
 
+    @GetMapping("/quiz/all/{qid}")
+    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable("qid") Long qid) {
+        Quiz quiz = new Quiz();
+        quiz.setQid(qid);
+        Set<Question> questionsOfQuiz = this.questionService.getQuestionsOfQuiz(quiz);
+        return ResponseEntity.ok(questionsOfQuiz);
+
+    }
+
 
     @GetMapping("/{quesId}")
     public Question get(@PathVariable("quesId") Long quesId){

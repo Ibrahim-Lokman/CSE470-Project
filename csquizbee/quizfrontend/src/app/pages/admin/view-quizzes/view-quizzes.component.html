@@ -8,11 +8,14 @@
             {{q.category.title}}
         </mat-card-subtitle>
     </mat-card-header>
-
     <mat-card-content>
         <p>{{q.description}} </p>
     </mat-card-content>
-    <button mat-raised-button color="primary">
+
+
+    <button 
+    [routerLink]="'/admin/view-questions/'+ q.qid +'/'+ q.title"
+    mat-raised-button color="primary">
         Questions
     </button>
 
