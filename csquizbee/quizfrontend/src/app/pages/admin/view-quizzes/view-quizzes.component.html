@@ -24,11 +24,18 @@
         No of Questions: {{q.numberOfQuestions}}
     </button>
 
-    <button mat-raised-button color="primary" class = "ml20">
+    <button 
+    [routerLink]="'/admin/quiz/' + q.qid"
+    mat-raised-button 
+    color="primary" 
+    class = "ml20">
         Update
     </button>
 
-    <button mat-raised-button color="primary" class = "ml20">
+    <button 
+    mat-raised-button 
+    color="primary" 
+    class = "ml20">
         Attempts
     </button>
 
