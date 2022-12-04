@@ -1,12 +1,18 @@
-Features for initial submission:
-
-
-Other potential features:
-*) 1 to 1 mock test
+features:
+*) 1 to 1 mock test (Video)
   *) Based on appoinment
   *) Appointment booking by payement.
   
 *) Self assessment based automentated mock test.
   *) 
+  
+*) Roadmap on different topic
+
+*) FAQ
+
+*) MCQ API
+
+*) MCQpool / Aptitude test
+  *) Based on selected topic
   
 *) 
