@@ -1,0 +1,62 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Instructions</h3>
+            </div>
+            <div class="col-md-8">
+                <ng-container *ngIf="questions">
+                    <h1 class="mt20">
+                        Quiz Name: {{questions[0].quiz.title}}
+                    </h1>
+                </ng-container>
+
+                <mat-card *ngFor = "let q of questions; let i =  index" class="mt10">
+                    <mat-card-content>
+
+                        <p> Q{{i+1}}) <span class = "ml10"  [innerHTML]="q.content"></span></p>
+                        <mat-divider></mat-divider>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input 
+                                    type="radio"
+                                    [value]="q.option1"
+                                    [name]="i"
+                                /> {{q.option1}}
+                            </div>
+                            <div class="col-md-6">
+                                <input 
+                                    type="radio"
+                                    [value]="q.option2"
+                                    [name]="i"
+                                /> {{q.option2}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input 
+                                    type="radio"
+                                    [value]="q.option3"
+                                    [name]="i"
+                                /> {{q.option3}}
+                            </div>
+                            <div class="col-md-6">
+                                <input 
+                                    type="radio"
+                                    [value]="q.option4"
+                                    [name]="i"
+                                /> {{q.option4}}
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="container text-center mt20" >
+                    <button mat-raised-button color = "primary">Submit Quiz</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+    
+            </div>
+        </div>
+    </div>
+</div>

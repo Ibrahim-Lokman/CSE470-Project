@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,6 +18,7 @@ import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/vi
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
 
 
 const routes: Routes = [
@@ -92,8 +93,13 @@ const routes: Routes = [
       {
         path: 'instructions/:qid',
         component: InstructionsComponent,
-      }
+      },
     ],
+  },
+  {
+    path: "start/:qid",
+    component: StartComponent,
+    canActivate: [NormalGuard],
   },
 ];
 
