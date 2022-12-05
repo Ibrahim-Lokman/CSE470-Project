@@ -21,7 +21,7 @@
 
                     <mat-card-actions>
                         <button mat-raised-button color = "primary"> View </button>
-                        <button mat-raised-button color = "accent"> Start </button>
+                        <button mat-raised-button color = "accent" [routerLink]="'/user-dashboard/instructions/'+q.qid"> Start </button>
                         <button mat-button color = "accent"> Questions:{{q.numberOfQuestion}} </button>
                         <button mat-button color = "accent"> Marks:{{q.maxMarks}} </button>
 
@@ -29,6 +29,15 @@
 
                 </mat-card>
             </div>
+
+            <div class = "col-md-12" *ngIf = "quizzes.length==0">
+                <mat-card>
+                    <mat-card-content>
+                        <h1> No Data Foud</h1>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
         </div>
     </div>
 </div>

@@ -1,0 +1,41 @@
+<div class = "bootstrap-wrapper">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-12">
+                <mat-card class = "mt20">
+                    <mat-card-header>
+                        <mat-card-title>Read Instructions!</mat-card-title>
+                        <mat-card-subtitle>One more step!</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class = "ml20">
+                        <h2> {{ quiz.title }} </h2>
+                        <p> {{ quiz.description }}  </p>
+                        <mat-divider></mat-divider>
+                        <br/>
+                        <h2>Quiz Info</h2>
+                        <ul>
+                            <li> No of questions : <b> {{quiz.numberOfQuestions}} </b> </li>   
+                            <li> Each quiz carries <b> {{quiz.maxMarks  / quiz.numberOfQuestions }} marks </b> </li>
+                            <li> Time : <b> {{quiz.numberOfQuestions*2}} Minutes </b> </li>
+                        </ul>
+                        <mat-divider></mat-divider>
+                        <br/>
+                        <h2>Important Instrctions:</h2>
+                        <ul>
+                            <li> Instraction 1 </li>
+                            <li> Instraction 2 </li>
+                            <li> Instraction 3 </li>
+                            <li> Instraction 4 </li>
+                        </ul>
+                    </mat-card-content>
+                    <mat-card-actions class = "text-center">
+
+                        <button class = "" mat-raised-button color = "primary">Start Quiz</button>
+
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+</div>

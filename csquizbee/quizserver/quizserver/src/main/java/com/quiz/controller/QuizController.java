@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/quiz")
@@ -43,7 +45,24 @@ public class QuizController {
         this.quizService.deleteQuiz(qid);
     }
 
+    @GetMapping("/category/{cid}")
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid){
+        Category category = new Category();
+        category.setCid(cid);
+        return this.quizService.getQuizzesOfCategory(category);
+    }
 
+    @GetMapping("/active")
+    public List<Quiz> getActiveQuizzes(){
+        return this.quizService.getActiveQuizzes();
+    }
+
+    @GetMapping("/category/active/{cid}")
+    public List<Quiz> getActiveQuizzesOfCategory(@PathVariable("cid") Long cid){
+      Category category = new Category();
+      category.setCid(cid);
+      return  this.quizService.getActiveQuizzesOfCategory(category);
+    }
 
 
 }
