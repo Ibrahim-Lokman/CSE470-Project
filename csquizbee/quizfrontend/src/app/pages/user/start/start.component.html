@@ -59,7 +59,27 @@
                 </div>
             </div>
             <div class="col-md-2">
-    
+                <mat-card style = "margin-top: 70px">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Progress
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            Quiz will automatically submitted after the time.
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h1 class = "text-center">{{getFormattedTime()}}</h1>
+                     <mat-spinner 
+                        mode = "determinate"
+                        color = 'accent' 
+                        style = "margin: auto"
+                        [value] = "(timer / (this.questions.length * 2 * 60)) * 100"
+                        >
+                        
+                     </mat-spinner>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>

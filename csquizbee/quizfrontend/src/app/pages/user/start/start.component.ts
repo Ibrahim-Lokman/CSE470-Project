@@ -15,6 +15,8 @@ export class StartComponent implements OnInit {
   correctAnswer = 0;
   attempted = 0;
   isSubmit = false;
+  timer : any;
+
   constructor(
     private locationSt: LocationStrategy, 
     private _route: ActivatedRoute,
@@ -32,12 +34,13 @@ export class StartComponent implements OnInit {
     .getQuestionsOfQuizForTest(this.qid)
     .subscribe((data:any) => {
       this.questions = data;
-
+      this.timer = this.questions.length * 2 * 60;
       this.questions.forEach((q:any) => {
         q['givenAnswer'] = '';
       });
 
       console.log(this.questions);
+      this.startTimer();
     },
     (error:any) => {
       console.log(error);
@@ -60,26 +63,49 @@ export class StartComponent implements OnInit {
       confirmButtonText: 'Submit',
       icon: 'info',
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.isSubmit= true;
-        this.questions.forEach((q:any) => {
-          if(q.givenAnswer == q.answer){
-            this.correctAnswer++;
-            let marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
-            this.marksGot += marksSingle;
-          }
 
-          if (q.givenAnswer.trim() != ''){
-            this.attempted++;
-          }
-    
-        });
-        console.log('Correct Answers: ' + this.correctAnswer);
-        console.log('Marks Got: '+ this.marksGot);
-        console.log('Attempted: '+ this.attempted);
+      if (result.isConfirmed) {
+        this.evalQuiz();
       } 
     });
 
   }
+  
+  startTimer(){
+     let t = window.setInterval(() => {
+      if(this.timer <= 0)
+      {
+        this.evalQuiz();
+        clearInterval(t);
+      }else {
+        this.timer --;
+      }
+    },1000)
+  }
 
+  getFormattedTime(){
+    let mm = Math.floor(this.timer / 60);
+    let ss = this.timer - mm*60;
+    return `${mm} min : ${ss} sec`;
+  }
+
+  evalQuiz(){
+
+    this.isSubmit= true;
+    this.questions.forEach((q:any) => {
+      if(q.givenAnswer == q.answer){
+        this.correctAnswer++;
+        let marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
+        this.marksGot += marksSingle;
+      }
+
+      if (q.givenAnswer.trim() != ''){
+        this.attempted++;
+      }
+
+    });
+    console.log('Correct Answers: ' + this.correctAnswer);
+    console.log('Marks Got: '+ this.marksGot);
+    console.log('Attempted: '+ this.attempted);
+  }
 }
