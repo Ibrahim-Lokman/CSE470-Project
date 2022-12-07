@@ -35,9 +35,7 @@ export class StartComponent implements OnInit {
     .subscribe((data:any) => {
       this.questions = data;
       this.timer = this.questions.length * 2 * 60;
-      this.questions.forEach((q:any) => {
-        q['givenAnswer'] = '';
-      });
+
 
       console.log(this.questions);
       this.startTimer();
@@ -72,6 +70,8 @@ export class StartComponent implements OnInit {
   }
   
   startTimer(){
+
+    
      let t = window.setInterval(() => {
       if(this.timer <= 0)
       {
@@ -90,7 +90,22 @@ export class StartComponent implements OnInit {
   }
 
   evalQuiz(){
+    
+    this._question.evalQuiz(this.questions).subscribe(
+      (data:any) => {
+        console.log(data);
+        this.marksGot= data.marksGot;
+        this.correctAnswer = data.correctAnswers;
+        this.attempted = data.attempted;
+        this.isSubmit = true;
 
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    
+    /*
     this.isSubmit= true;
     this.questions.forEach((q:any) => {
       if(q.givenAnswer == q.answer){
@@ -107,5 +122,6 @@ export class StartComponent implements OnInit {
     console.log('Correct Answers: ' + this.correctAnswer);
     console.log('Marks Got: '+ this.marksGot);
     console.log('Attempted: '+ this.attempted);
+  */
   }
 }
